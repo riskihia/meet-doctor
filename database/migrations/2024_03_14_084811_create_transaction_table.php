@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transaction', function (Blueprint $table) {
             $table->id();
-            $table->integer('appointment_id');
+            $table->foreignId('appointment_id')->nullable()->index('fk_transaction_to_appointment');
             // $table->integer('config_payment_id');
             $table->string('fee_doctor')->nullable();
             $table->string('fee_specialist')->nullable();
