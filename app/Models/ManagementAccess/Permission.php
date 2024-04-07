@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Permisson extends Model
+class Permission extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -24,4 +24,9 @@ class Permisson extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    // == has many
+    public function permission_roles(){
+        return $this->hasMany(PermissionRole::class, 'permission_id', 'id');
+    }
 }

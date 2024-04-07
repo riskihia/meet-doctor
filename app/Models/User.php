@@ -3,7 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\ManagementAccess\DetailUser;
+use App\Models\ManagementAccess\RoleUser;
+use App\Models\Operational\Appointment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -17,6 +22,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -58,4 +64,18 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    // == has one
+    public function detail_user(){
+        return $this->hasOne(DetailUser::class, 'user_id');
+    }
+
+    // == has many
+    public function appointments(){
+        return $this->hasMany(Appointment::class, 'user_id');
+    }
+    
+    public function role_users(){
+        return $this->hasMany(RoleUser::class, 'user_id');
+    }
 }
