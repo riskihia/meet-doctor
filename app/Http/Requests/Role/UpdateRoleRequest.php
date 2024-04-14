@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests\Role;
 
+use App\Models\ManagementAccess\Role;
+// use Illuminate\Auth\Access\Gate;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRoleRequest extends FormRequest
@@ -11,7 +14,7 @@ class UpdateRoleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +25,7 @@ class UpdateRoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|string|max:255',
         ];
     }
 }

@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests\Doctor;
 
+use App\Models\Operational\Doctor;
+// use Illuminate\Auth\Access\Gate;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateDoctorRequest extends FormRequest
@@ -11,7 +14,7 @@ class UpdateDoctorRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +26,10 @@ class UpdateDoctorRequest extends FormRequest
     {
         return [
             //
+            'specialist_id' => 'required|integer',
+            'name' => 'required|string|max:255',
+            'fee' => 'required|string|max:255',
+            'photo' => 'nullable|string|max:10000',
         ];
     }
 }
