@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests\Consultation;
 
+use App\Models\MasterData\Consultation;
+// use Illuminate\Auth\Access\Gate;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateConsultationRequest extends FormRequest
@@ -11,7 +14,7 @@ class UpdateConsultationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +26,7 @@ class UpdateConsultationRequest extends FormRequest
     {
         return [
             //
+            'name' => 'required|string|max:255|unique:consultations,name,' . $this->consultation->id,
         ];
     }
 }

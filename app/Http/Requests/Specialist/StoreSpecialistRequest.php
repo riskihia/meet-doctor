@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests\Specialist;
 
+use App\Models\MasterData\Specialist;
+// use Illuminate\Auth\Access\Gate;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreSpecialistRequest extends FormRequest
@@ -11,7 +14,7 @@ class StoreSpecialistRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +26,8 @@ class StoreSpecialistRequest extends FormRequest
     {
         return [
             //
+            'name' => 'required|string|max:255|unique:specialists',
+            'price' => 'required|string|max:255',
         ];
     }
 }

@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests\ConfigPayment;
 
+use App\Models\MasterData\ConfigPayment;
+// use Illuminate\Auth\Access\Gate;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateConfigPaymentRequest extends FormRequest
@@ -11,7 +14,7 @@ class UpdateConfigPaymentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +26,8 @@ class UpdateConfigPaymentRequest extends FormRequest
     {
         return [
             //
+            'fee' => 'required|string|max:255',
+            'vat' => 'required|string|max:255',
         ];
     }
 }
