@@ -25,7 +25,10 @@ Route::resource('/', LandingController::class);
 Route::prefix('backsite')->middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('/payment', PaymentController::class)->middleware('auth');
     Route::resource('/appointment', AppointmentController::class)->middleware('auth');
+});
 
+Route::prefix('backsite')->middleware(['auth:sanctum', 'verified'])->group(function () {
+    return view('dashboard');
 });
 
 Route::middleware([
