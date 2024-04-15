@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Frontsite\AppointmentController;
+use App\Http\Controllers\Frontsite\LandingController;
+use App\Http\Controllers\Frontsite\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,11 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::resource('landing-page', App\Http\Controllers\Frontsite\LandingController::class)->middleware('auth');
+Route::resource('/', LandingController::class);
+
+Route::prefix('backsite')->middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::resource('/payment', PaymentController::class)->middleware('auth');
+    Route::resource('/appointment', AppointmentController::class)->middleware('auth');
+
+});
 
 Route::middleware([
     'auth:sanctum',
