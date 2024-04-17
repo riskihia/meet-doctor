@@ -1,1 +1,7 @@
-<button class="btn btn-success">Success, Go...</button>
+@extends('layouts.default')
+
+@section('title', 'Appointment')
+
+@section('content')
+appointment
+@endsection
