@@ -5,11 +5,12 @@
         
         <title>@yield('title') | MeetDoctor</title>
 
-        {{-- @stack('before-style')
-            @include('includes.frontsite.style')
-        @stack('after-style') --}}
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @stack('before-style')
+            {{-- @include('includes.frontsite.style') --}}
+
+            <!-- Scripts -->
+            @vite('resources/css/app.css')
+        @stack('after-style')
     </head>
     <body>
         @include('components.frontsite.header')
@@ -18,6 +19,9 @@
 
         @stack('before-script')
             @include('includes.frontsite.script')
+
+            {{-- script --}}
+            @vite('resources/js/app.js')
         @stack('after-script')
     </body>
 </html>
